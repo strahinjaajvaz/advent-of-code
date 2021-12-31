@@ -510,9 +510,6 @@ let rawInput = `561,579 -> 965,175
 // 0,0 -> 8,8
 // 5,5 -> 8,2`;
 
-// rawInput = `0,9 -> 5,9
-// 9,4 -> 3,4`;
-
 let parsedInput = rawInput
   .split("\n")
   .map((s) => s.split(" -> ").map((n) => n.split(",").map(Number)));
