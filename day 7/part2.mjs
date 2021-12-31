@@ -20,7 +20,7 @@ let result = [];
 for (let i = 0; i < input.length; i++) {
   let pos = [];
   for (let j = 0; j < input.length; j++) {
-    let diff = Math.abs(5 - input[j]);
+    let diff = Math.abs(i - input[j]);
     pos.push(triangular(diff));
   }
 
