@@ -210,22 +210,89 @@ gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce
 // defcg fbeag edgaf agd fbgace bafd da cfgedab agdfbe agcedb | fgeda da eafbgd abfd
 // fcde ebafcgd gcdae ecg dbcfag adgcf ec aegbd gacefd fgceab | gcaed gec cfegba fdaegc`;
 
-let input = rawInput
-  .split("\n")
-  .map((row) => row.split(" | ").map((s) => s.split(" ")));
+rawInput = `be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe`;
 
-let count = 0;
-for (let [_, output] of input) {
-  for (let digit of output) {
-    if (
-      digit.length === 2 ||
-      digit.length === 3 ||
-      digit.length === 4 ||
-      digit.length === 7
-    ) {
-      count++;
-    }
-  }
+let input = rawInput.split("\n").map((row) => {
+  let formatted = row
+    .split(" | ")
+    .map((s) => s.split(" ").map((i) => i.split("").sort().join("")));
+
+  return { pattern: formatted[0], output: formatted[1] };
+});
+
+function getNumberBindings() {}
+
+function intersection(arr1, arr2) {
+  return arr1.filter((i) => !arr2.includes(i));
 }
 
-console.log(count);
+let charMap = new Map();
+function generateCharMap(map) {
+  let remainingLetters = ["a", "b", "c", "d", "e", "f", "g"];
+
+  let a = intersection(map.get(3)[0], map.get(2)[0]);
+  charMap.set("a", a);
+  remainingLetters.unshift();
+
+  // let b = intersection(map.get(3)[0], [...map.get(2)[0], ) //difference between 8 and 2 + 1
+  let c = inter;
+}
+
+function getWordLengthHistogram(map, word) {
+  map.set(
+    word.length,
+    map.has(word.length) ? [...map.get(word.length), word] : [word]
+  );
+}
+
+for (let { pattern } of input) {
+  let map = new Map();
+  for (let word of pattern) {
+    let chars = word.split("").sort();
+    getWordLengthHistogram(map, chars);
+  }
+  generateCharMap(map);
+  console.log(map);
+}
+
+/*
+be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe | 7
+
+be = 1
+edb = 7
+cgeb = 4
+cfbegad = 8
+
+1 = c, f
+2 = a, c, d, e, g
+3 = a, c, d, f, g
+4 = b, c, d, f
+5 = a, b, d, f, g
+6 = a, b, d, e, f, g
+7 = a, c, f
+8 = a, b, c, d, e, f, g
+9 = a, b, c, d, f, g
+
+d f
+
+a = difference between 1 and 3
+b = difference between 8 and 2 + 1
+c = difference between 8 and 6
+e = difference between 9 and 8
+g = difference between 8 and 3 + 4
+d = has in common with 4;
+f = the last value;
+
+function mapLetters(knownNumberPatterns, pattern) {
+  let a = n
+}
+
+be = 
+ aaaa   
+b    c 
+b    c 
+ dddd  
+e    f 
+e    f 
+ gggg 
+ */
